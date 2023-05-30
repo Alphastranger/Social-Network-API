@@ -15,5 +15,13 @@ module.exports = {
         User.create(req.body)
         .then((newUser) => res.json(newUser))
         .catch((err)=> res.status(500).json(err))
+    },
+    updateUser(req, res) {
+        User.updateOne({_id: req.params.userId})
+        .then((users)=> {
+            if (!users) {
+                res.status(404).json({message: `No user listed`})
+            }
+        })
     }
 }
