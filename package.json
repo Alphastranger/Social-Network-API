@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "mongodb": "^5.5.0",
+    "mongosh": "^1.9.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "social-network-api",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alphastranger/Social-Network-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alphastranger/Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/Alphastranger/Social-Network-API#readme"
+}
