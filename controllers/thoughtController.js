@@ -46,7 +46,7 @@ module.exports = {
     postReaction(req, res) {
         Thought.findOneAndUpdate(
             {_id: req.params.thoughtId},
-            {reactions: req.body},
+            {$addToSet: {reactions: req.body}},
             )
         .then((reaction)=> {
             if (!reaction) {
