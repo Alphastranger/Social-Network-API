@@ -13,7 +13,7 @@ module.exports = {
     },
     createNewUser(req, res) {
         User.create(req.body)
-        .then((newUser) => res.json(newUser))
+        .then(() => res.json({message: 'Posted Successfully'}))
         .catch((err)=> res.status(500).json(err))
     },
     updateUser(req, res) {
