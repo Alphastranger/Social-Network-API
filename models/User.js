@@ -1,5 +1,5 @@
-const {Schema, Types} = require('mongoose');
-const thoughtSchema = require('./Thought')
+const {Schema, Types, model} = require('mongoose');
+const Thought = require('./Thought')
 
 const userSchema = new Schema(
     {
@@ -15,8 +15,8 @@ const userSchema = new Schema(
             unique: true,
             match: /[a-z]/,
         },
-        thoughts: [thoughtSchema],
-        friends: [userSchema],
+        thoughts: [Thought],
+        friends: [this],
     }, {
         virtuals: {
             friendCount: {
@@ -27,6 +27,6 @@ const userSchema = new Schema(
         }
     }
 )
-const User = mongoose.model('User', userSchema)
+const User = model('User', userSchema)
 
 module.exports = User
