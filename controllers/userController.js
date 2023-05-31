@@ -21,7 +21,39 @@ module.exports = {
         .then((users)=> {
             if (!users) {
                 res.status(404).json({message: `No user listed`})
+            } else {
+                res.json(users)
             }
         })
+        .catch((err)=> res.status(500).json(err))
+    },
+    deleteUser(req,res) {
+        User.deleteOne({_id: req.params.userId})
+        .then((users)=> {
+            if (!users) {
+                res.status(404).json({message: `No user listed`})
+            } else {
+                res.json(users)
+            }
+        })
+        .catch((err)=> res.status(500).json(err))
+    },
+    addFriend(req,res) {
+        User.findOne({_id: req.params.userId})
+        .insertOne({friends: req.body})
+        .then((friends)=> {
+            return User.findOneAndUpdate(
+                {_id: req.params.friendId},
+                {$addToSet: {friends: friends._id}},
+                {new: true}
+            )
+        })
+        .catch((err)=> res.status(500).json(err))
+    },
+    deleteFriend(req,res) {
+        User.findOneAndUpdate(
+            {_id: req.params.userId},
+            {$pull: {friends: req.params.friendId}})
+            .catch((err)=> res.status(500).json(err))
     }
 }
