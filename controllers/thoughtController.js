@@ -60,8 +60,8 @@ module.exports = {
     deleteReaction(req, res) {
         Thought.findOneAndUpdate(
             {_id: req.params.thoughtId},
-            {$pull: {reactions: reactionId}}
+            {$pull: {reactions: req.params.reactionId}})
             .catch((err)=> res.status(500).json(err))
-        )
+        
     }
 }
