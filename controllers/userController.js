@@ -1,3 +1,4 @@
+const { trusted } = require('mongoose')
 const {User, Thought} = require('../models')
 
 module.exports = {
@@ -39,15 +40,17 @@ module.exports = {
         .catch((err)=> res.status(500).json(err))
     },
     addFriend(req,res) {
-        User.findOne({_id: req.params.userId})
-        .insertOne({friends: req.body})
-        .then((friends)=> {
-            return User.findOneAndUpdate(
-                {_id: req.params.friendId},
-                {$addToSet: {friends: friends._id}},
-                {new: true}
-            )
-        })
+        User.findOneAndUpdate({_id: req.params.userId},
+            {$addToSet: {friends: req.body}},
+            {new: true})
+        // .then((friends)=> {
+        //     return User.findOneAndUpdate(
+        //         {_id: req.params.friendId},
+        //         {$addToSet: {friends: friends._id}},
+        //         {new: true}
+        //     )
+        // })
+        .then((friending)=> {res.json(friending)})
         .catch((err)=> res.status(500).json(err))
     },
     deleteFriend(req,res) {

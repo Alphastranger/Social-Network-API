@@ -51,6 +51,8 @@ module.exports = {
         .then((reaction)=> {
             if (!reaction) {
                 res.status(404).json({message: 'No thoughts listed'})
+            } else {
+                res.json(reaction)
             }
         })
         .catch((err)=> res.status(500).json(err))
