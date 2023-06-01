@@ -8,7 +8,7 @@ module.exports = {
     },
     getSingleThought(req,res) {
         Thought.findOne({_id: req.params.thoughtId})
-        .then((thoughtsId)=> res.json(thoughtsId))
+        .then((thoughtId)=> res.json(thoughtId))
         .catch((err)=> res.status(500).json(err))
     },
     createNewThought(req,res) {
